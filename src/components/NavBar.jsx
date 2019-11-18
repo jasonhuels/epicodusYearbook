@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function NavBar(){
   var navBarButton = {
-    margin: "0 50px 0 50px",
+
     display: "inline-block",
     backgroundColor: "blanchedalmond",
     border: "solid 2px burlywood",
@@ -30,6 +30,7 @@ function NavBar(){
         <button className="btn" style={navBarButton}><Link style={navLink} to = "/">Home</Link></button>
         <button className="btn" style={navBarButton}><Link style={navLink}  to = "/Yearbook">Yearbook</Link></button>
         <button className="btn" style={navBarButton}><Link style={navLink}  to = "/Teachers">Teachers</Link></button>
+        <button className="btn" style={navBarButton}><Link style={navLink} to="/newstudent">Add a student</Link></button>
       </div>
     </nav>
   );

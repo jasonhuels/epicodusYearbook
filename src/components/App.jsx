@@ -5,25 +5,43 @@ import Home from "./Home";
 import NavBar from "./NavBar";
 import TeacherList from "./TeacherList";
 import Error404 from "./Error404";
+import NewStudentControl from "./NewStudentControl";
 
-function App(){
-  var siteStyle = {
-    backgroundColor : "burlywood",
-  };
-  return (
-    <div style={siteStyle} className="container">
-      <NavBar/>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <div className="row">
-          <Route path ='/Yearbook' component={StudentList} />
-          <Route path ='/Teachers' component={TeacherList} />
-        </div>
+class App extends React.Component {
 
-        <Route component={Error404} />
-      </Switch>
-    </div>
-  );
+  constructor(props) {
+    super(props);
+    this.state = {
+      masterStudentList: []
+    };
+    this.handleAddingNewStudentToList = this.handleAddingNewStudentToList.bind(this);
+  }
+
+  handleAddingNewStudentToList(newStudent) {
+    var newMasterStudentList = this.state.masterStudentList.slice();
+    newMasterStudentList.push(newStudent);
+    this.setState({ masterStudentList: newMasterStudentList });
+  }
+
+  render() {
+
+    return (
+      <div className="container" >
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <div className="row">
+            <Route path='/Yearbook' render={() => <StudentList studentList={this.state.masterStudentList} />} />
+            <Route path='/newstudent' render={()=><NewStudentControl onNewStudentCreation={this.handleAddingNewStudentToList} />} />
+            <Route path='/Teachers' component={TeacherList} />
+          </div>
+          <Route component={Error404} />
+        </Switch>
+      </div>
+    );
+  }
 }
+
+
 
 export default App;
