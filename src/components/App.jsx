@@ -6,14 +6,16 @@ import NavBar from "./NavBar";
 import TeacherList from "./TeacherList";
 import Error404 from "./Error404";
 import NewStudentControl from "./NewStudentControl";
+import StudentData from "./StudentData";
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      masterStudentList: []
+      masterStudentList: StudentData
     };
+  
     this.handleAddingNewStudentToList = this.handleAddingNewStudentToList.bind(this);
   }
 
